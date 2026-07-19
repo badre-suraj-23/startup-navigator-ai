@@ -191,10 +191,7 @@ export default function Dashboard() {
                     sm:text-lg
                     ">
 
-                        Manage your startup knowledge base,
-                        perform AI powered semantic search,
-                        and organize business documents using
-                        FastAPI, Groq, PostgreSQL and ChromaDB.
+                        Manage your startup knowledge base, perform AI-powered semantic search, and organize business documents using FastAPI, Groq, PostgreSQL, Qdrant Cloud, and Jina AI Embeddings.
 
                     </p>
 
@@ -499,7 +496,7 @@ export default function Dashboard() {
 
                 <p className="text-gray-500">
 
-                    Powered by ChromaDB + Groq
+                    Powered by Qdrant Cloud + Jina AI Embeddings + Groq
 
                 </p>
 
@@ -546,11 +543,11 @@ export default function Dashboard() {
 
             {
             [
-                "FastAPI",
+                "FastAPI & JWT Auth",
                 "PostgreSQL",
-                "JWT Auth",
                 "Groq AI",
-                "ChromaDB",
+                "Qdrant Cloud",
+                "Jina AI Embeddings",
                 "React"
 
             ].map(item=>(

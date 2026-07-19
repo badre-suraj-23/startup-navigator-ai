@@ -125,7 +125,7 @@ export default function Footer() {
                 text-gray-400
                 ">
 
-                    Built with ❤️ using FastAPI • React • PostgreSQL • ChromaDB • Groq
+                    Built with ❤️ using FastAPI • React • PostgreSQL • Qdrant Cloud • Jina AI • Groq
 
                 </p>
 
