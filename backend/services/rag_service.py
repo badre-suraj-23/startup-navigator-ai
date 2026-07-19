@@ -1,9 +1,7 @@
 from services.chroma_service import chroma_service
 
 
-
 class RAGService:
-
 
     def retrieve_context(
         self,
@@ -11,54 +9,27 @@ class RAGService:
         k: int = 5
     ) -> str:
 
-
-        documents = chroma_service.similarity_search(
-
+        results = chroma_service.similarity_search(
             query=question,
-
             k=k
-
         )
 
-
-
-        if not documents:
-
+        if not results:
             return ""
-
-
 
         context = ""
 
+        for result in results:
 
+            payload = result.payload
 
-        for doc in documents:
-
-
-            metadata = doc.metadata
-
-
-
-            title = metadata.get(
-                "title"
-            )
-
-
-            category = metadata.get(
-                "category"
-            )
-
-
-            source = metadata.get(
-                "source"
-            )
-
-
+            title = payload.get("title", "")
+            category = payload.get("category", "")
+            source = payload.get("source", "")
+            content = payload.get("page_content", "")
 
             # Uploaded File
-
-            if metadata.get("type") == "uploaded_file":
-
+            if payload.get("type") == "uploaded_file":
 
                 context += f"""
 
@@ -68,18 +39,13 @@ Source:
 Document Type:
 Uploaded File
 
-
 Content:
-{doc.page_content}
+{content}
 
 """
 
-
-
             # Article Database
-
             else:
-
 
                 context += f"""
 
@@ -92,18 +58,12 @@ Category:
 Source:
 Article
 
-
 Content:
-{doc.page_content}
+{content}
 
 """
 
-
-
         return context
-
-
-
 
 
 rag_service = RAGService()

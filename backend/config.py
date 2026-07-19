@@ -7,6 +7,10 @@ class Settings(BaseSettings):
 
     DATABASE_URL: str
 
+    JINA_API_KEY: str
+    QDRANT_URL: str
+    QDRANT_API_KEY: str
+    
     GROQ_API_KEY: str
     LLM_MODEL: str = "llama-3.1-8b-instant"
 

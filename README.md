@@ -1,8 +1,8 @@
 # 🚀 Startup Navigator AI
 
-Startup Navigator AI is a modern AI-powered web application that helps entrepreneurs explore startup-related topics such as company registration, funding, legal compliance, branding, hiring, taxation, business growth, and AI tools.
+Startup Navigator AI is an AI-powered platform that helps entrepreneurs, founders, and startups explore business-related topics such as company registration, funding, taxation, compliance, branding, hiring, marketing, and business growth.
 
-The application uses Retrieval-Augmented Generation (RAG) to answer user questions from an internal knowledge base as well as user-uploaded PDF/TXT documents.
+The application uses Retrieval-Augmented Generation (RAG) to answer user queries from an internal knowledge base as well as uploaded PDF/TXT documents using semantic search.
 
 ---
 
@@ -14,37 +14,38 @@ The application uses Retrieval-Augmented Generation (RAG) to answer user questio
 - User Login
 - JWT Authentication
 - Protected Routes
+- Secure Password Hashing
 - Logout
 
 ---
 
 ## 📚 Knowledge Base
 
-- Admin can Add Articles
+- Add Articles
 - Update Articles
 - Delete Articles
-- Categorize Articles
-- Store startup resources
+- Organize by Categories
+- Startup Knowledge Repository
 
 ---
 
 ## 🤖 AI Search
 
 - Retrieval-Augmented Generation (RAG)
-- ChromaDB Vector Database
-- HuggingFace Embeddings
+- Qdrant Cloud Vector Database
+- Jina AI Embeddings
 - Groq LLM Integration
 - Semantic Search
-- Context-based AI Answers
+- Context-aware AI Responses
 
 ---
 
 ## 📄 Document Upload
 
-- Upload PDF
+- Upload PDF Files
 - Upload TXT Files
-- Automatic Indexing
-- Ask Questions from Uploaded Documents
+- Automatic Document Indexing
+- AI Question Answering from Uploaded Documents
 
 ---
 
@@ -60,8 +61,8 @@ The application uses Retrieval-Augmented Generation (RAG) to answer user questio
 ## 📜 Search History
 
 - Previous AI Questions
-- AI Answers
-- Re-open Conversations
+- AI Responses
+- Re-open Previous Conversations
 
 ---
 
@@ -82,8 +83,8 @@ The application uses Retrieval-Augmented Generation (RAG) to answer user questio
 - PostgreSQL
 - JWT Authentication
 - LangChain
-- ChromaDB
-- HuggingFace Embeddings
+- Qdrant Cloud
+- Jina AI Embeddings
 - Groq API
 - Pydantic
 
@@ -102,43 +103,55 @@ The application uses Retrieval-Augmented Generation (RAG) to answer user questio
 
 # 🧠 AI Architecture
 
+```
 User Question
-
-↓
-
-Retrieve Similar Documents (ChromaDB)
-
-↓
-
-Build Prompt
-
-↓
-
+       │
+       ▼
+Generate Embedding (Jina AI)
+       │
+       ▼
+Qdrant Cloud Similarity Search
+       │
+       ▼
+Retrieve Relevant Context
+       │
+       ▼
+Prompt Builder
+       │
+       ▼
 Groq LLM
-
-↓
-
+       │
+       ▼
 AI Response
+```
 
 ---
 
 # 📁 Project Structure
 
-backend/
+```
+startup-navigator-ai/
 
-- routers/
-- services/
-- models/
-- schemas/
-- uploads/
-- chroma_db/
-
-frontend/
-
-- components/
-- layouts/
-- pages/
-- services/
+├── backend/
+│   ├── auth/
+│   ├── routers/
+│   ├── services/
+│   ├── uploads/
+│   ├── app.py
+│   ├── config.py
+│   ├── database.py
+│   ├── models.py
+│   ├── schemas.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── README.md
+└── .gitignore
+```
 
 ---
 
@@ -146,12 +159,23 @@ frontend/
 
 Backend (.env)
 
-```
+```env
+APP_NAME=Startup Navigator API
+APP_VERSION=1.0.0
+
 DATABASE_URL=
-JWT_SECRET=
+
 GROQ_API_KEY=
-LLM_MODEL=
-HF_MODEL=
+LLM_MODEL=llama-3.1-8b-instant
+
+JINA_API_KEY=
+
+QDRANT_URL=
+QDRANT_API_KEY=
+
+SECRET_KEY=
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=1440
 ```
 
 ---
@@ -163,6 +187,7 @@ cd backend
 
 python -m venv venv
 
+# Windows
 venv\Scripts\activate
 
 pip install -r requirements.txt
@@ -186,28 +211,36 @@ npm run dev
 
 # 🌍 Deployment
 
-Frontend
+### Frontend
 
 - Vercel
 
-Backend
+### Backend
 
 - Render
 
-Database
+### Database
 
 - PostgreSQL (Render)
 
-Vector Database
+### Vector Database
 
-- ChromaDB Persistent Storage
+- Qdrant Cloud
+
+### Embedding Model
+
+- Jina AI
+
+### LLM
+
+- Groq
 
 ---
 
 # 🧪 Testing
 
-- Authentication
-- CRUD APIs
+- Authentication APIs
+- Article CRUD APIs
 - AI Search
 - PDF Upload
 - Search History
@@ -216,21 +249,16 @@ Vector Database
 
 ---
 
-# 📷 Screenshots
-
-Add screenshots here after deployment.
-
----
-
-# 📌 Future Improvements
+# 🚀 Future Improvements
 
 - Conversation Memory
-- AI Streaming Responses
-- Multiple File Upload
+- Streaming AI Responses
+- Multiple Document Upload
 - Markdown Rendering
-- AI Citations
+- Source Citations
 - User-specific Knowledge Base
-- Admin Analytics
+- Role-based Admin Panel
+- AI Analytics Dashboard
 
 ---
 
@@ -240,17 +268,17 @@ Add screenshots here after deployment.
 
 Python Backend & Generative AI Developer
 
-GitHub:
+**GitHub**  
 https://github.com/badre-suraj-23
 
-LinkedIn:
-https://linkedin.com/in/suraj-badre
+**LinkedIn**  
+https://www.linkedin.com/in/suraj-badre/
 
-Email:
+**Email**  
 surajbadre.dev@gmail.com
 
 ---
 
 # 📄 License
 
-This project was developed for educational and technical evaluation purposes.
+This project is developed for educational, learning, and technical evaluation purposes.

@@ -1,24 +1,60 @@
-from langchain_huggingface import HuggingFaceEmbeddings
+import requests
+
+from config import settings
+
 
 class EmbeddingService:
 
     def __init__(self):
+        self.api_key = settings.JINA_API_KEY
+        self.url = "https://api.jina.ai/v1/embeddings"
 
-        self.embedding_model = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/all-MiniLM-L6-v2"
+    def embed_text(self, text: str):
+
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+
+        payload = {
+            "model": "jina-embeddings-v3",
+            "input": [text]
+        }
+
+        response = requests.post(
+            self.url,
+            headers=headers,
+            json=payload
         )
 
-    def embed_text(
-        self,
-        text: str
-    ):
-        return self.embedding_model.embed_query(text)
+        response.raise_for_status()
 
-    def embed_documents(
-        self,
-        documents: list[str]
-    ):
-        return self.embedding_model.embed_documents(documents)
+        return response.json()["data"][0]["embedding"]
+
+    def embed_documents(self, documents: list[str]):
+
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+
+        payload = {
+            "model": "jina-embeddings-v3",
+            "input": documents
+        }
+
+        response = requests.post(
+            self.url,
+            headers=headers,
+            json=payload
+        )
+
+        response.raise_for_status()
+
+        return [
+            item["embedding"]
+            for item in response.json()["data"]
+        ]
 
 
 embedding_service = EmbeddingService()
