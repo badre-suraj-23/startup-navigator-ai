@@ -1,0 +1,52 @@
+# =========================
+# Python
+# =========================
+backend/venv/
+backend/.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# Environment Variables
+# =========================
+backend/.env
+frontend/.env
+.env
+
+# =========================
+# React / Vite
+# =========================
+frontend/node_modules/
+frontend/dist/
+
+# =========================
+# ChromaDB
+# =========================
+backend/chroma_db/
+chroma_db/
+
+# Uploads
+backend/uploads/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# JetBrains
+# =========================
+.idea/
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db

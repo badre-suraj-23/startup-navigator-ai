@@ -1,0 +1,90 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { registerUser } from "../services/authService";
+
+export default function Register() {
+
+    const navigate = useNavigate();
+
+    const [full_name,setFullName]=useState("");
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+
+    const handleRegister = async (e)=>{
+
+        e.preventDefault();
+
+        try{
+
+            await registerUser({
+                full_name,
+                email,
+                password
+            });
+
+            alert("Registration Successful");
+
+            navigate("/");
+
+        }
+
+        catch(error){
+
+            alert(
+                error.response?.data?.detail ||
+                "Registration Failed"
+            );
+
+        }
+
+    };
+
+    return(
+
+        <div className="min-h-screen flex justify-center items-center bg-gray-100">
+
+            <form
+                onSubmit={handleRegister}
+                className="bg-white p-8 rounded-xl shadow-lg w-96"
+            >
+
+                <h1 className="text-3xl font-bold mb-6">
+                    Register
+                </h1>
+
+                <input
+                    className="border p-3 rounded w-full mb-4"
+                    placeholder="Full Name"
+                    value={full_name}
+                    onChange={(e)=>setFullName(e.target.value)}
+                />
+
+                <input
+                    className="border p-3 rounded w-full mb-4"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
+                />
+
+                <input
+                    type="password"
+                    className="border p-3 rounded w-full mb-4"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
+                />
+
+                <button
+                    className="bg-green-600 text-white w-full p-3 rounded"
+                >
+                    Register
+                </button>
+
+            </form>
+
+        </div>
+
+    );
+
+}
